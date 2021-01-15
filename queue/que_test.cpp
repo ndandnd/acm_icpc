@@ -14,7 +14,6 @@ int main(){
         
         dq.emplace_back(num);
     }
-    cout<<dq.front()<<dq.back();
-    cout<<dq.at(7);
+    dq=dq-1;
     return 0;
 }

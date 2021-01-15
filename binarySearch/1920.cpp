@@ -54,25 +54,33 @@ sort(members.begin(), members.end());
 
 
 
-//FIX
-// for(int i=0; i<M;i++){
-//     int begin = members.front(), end = members.back();
-//     int mid;
-//     while(end >= begin){
-//         mid = (begin+end)/2;
-//         if(members[mid] == test[i]){
-//             cout << 1 << '\n';
-//         }
-//         if(members[mid] > test[i]){
-//             return binarySearch(vec, begin, mid-1, lookfor);
-//         }
-//         if(vec[mid] < lookfor){
-//             return binarySearch(vec, mid+1, end, lookfor);
-//         }
-//     }
-//     return -1;
-//     cout << binarySearch(members, 0, N-1, test[i]) << '\n';
-// }
+int max_iter = ceil(log2(members.size()));
+
+
+for(int i=0; i<M;i++){
+    int begin = 0, end = N; //reset after each trial
+    for(int iter = 1; iter <= max_iter+2; iter++){//+1 for case where N=1
+        
+        if(iter == max_iter+2 || (begin > end)){ //Not found
+            cout << 0 << '\n';
+            break; //
+        }
+    
+        int mid = (begin+end)/2;
+        
+
+        if(members[mid] == test[i]){
+            cout << 1 << '\n';
+            break; //move on to next test[i]
+        }
+        
+        else if(members[mid] > test[i]){
+            end = mid-1;
+        }
+        else{
+            begin = mid+1;
+        }
+    }
 
 return 0;
 }
